@@ -39,7 +39,7 @@ var Feed = React.createClass({
 
     return (
      <div style={containerStyle}>
-      <List subheader="Today">
+      <List>
         <ListItem
           leftAvatar={<Avatar src="./image/ok-128.jpg" />}
           rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}

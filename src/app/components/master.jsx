@@ -53,7 +53,9 @@ class Master extends React.Component {
     var styles = this.getStyles();
     var title =
       this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('feed') ? 'Feed' : "Open the book";
+      this.context.router.isActive('feed') ? 'Feed' :
+      this.context.router.isActive('component') ? 'Component' :
+      "";
 
     var rightButton = (
       <IconButton
