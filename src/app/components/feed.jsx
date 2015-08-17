@@ -31,22 +31,6 @@ var {Spacing, Typography} = mui.Styles;
 
 var Feed = React.createClass({
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  getChildContext: function() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  },
-
-  componentWillMount: function() {
-    ThemeManager.setPalette({
-      accent1Color: Colors.deepOrange500
-    });
-  },
-
   render: function() {
 
     var containerStyle = {

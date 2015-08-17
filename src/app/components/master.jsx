@@ -84,9 +84,8 @@ class Master extends React.Component {
 
         <FullWidthSection style={styles.footer}>
           <p style={styles.p}>
-            Hide book was made by <a style={styles.a} href="">contributors</a>.
+            Hide book was made by <a style={styles.a} href="https://github.com/luckypapa/AMAG/graphs/contributors">Big head brothers band</a>.
           </p>
-          {githubButton}
         </FullWidthSection>
 
       </AppCanvas>

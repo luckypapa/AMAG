@@ -9,6 +9,8 @@ var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
 var {StylePropable, StyleResizable} = mui.Mixins;
 var {Colors, Spacing, Typography} = mui.Styles;
 
+var FacebookLogin = require('./fblogin.jsx');
+
 var HomePage = React.createClass({
 
   mixins: [StylePropable, StyleResizable],
@@ -25,7 +27,6 @@ var HomePage = React.createClass({
     return (
       <div style={style}>
         {this._getHomePageHero()}
-        {this._getHomeContribute()}
       </div>
     );
   },
@@ -33,7 +34,7 @@ var HomePage = React.createClass({
   _getHomePageHero: function() {
     var styles = {
       root: {
-        backgroundColor: Colors.deepOrange500,
+        backgroundColor: ThemeManager.palette.primary1Color,
         overflow: 'hidden'
       },
       svgLogo: {
@@ -97,62 +98,15 @@ var HomePage = React.createClass({
           <div style={styles.tagline}>
             <h1 style={styles.h1}>Hide Book</h1>     
             <h2 style={styles.h2}>
-              Talk with your facebook friends &nbsp;
-              <span style={styles.nowrap}>Anonymously and freely</span> 
+              Talk with someone you may know <br/>
+              <span style={styles.nowrap}>anonymously and freely</span> 
             </h2>
-            <RaisedButton 
-              className="sign-in" 
-              label="Sign-in" 
-              onTouchTap={this._onSignInClick}
-              linkButton={true} 
-              style={styles.demoStyle} 
-              labelStyle={styles.label}/>
-            <RaisedButton 
-              className="sign-up" 
-              label="Sign-up" 
-              onTouchTap={this._onSignUpClick}
-              linkButton={true} 
-              style={styles.demoStyle} 
-              labelStyle={styles.label}/>
+            <FacebookLogin
+              appId="1088597931155576"
+              scope="public_profile,email,user_friends" />
           </div>
       </FullWidthSection>
     );
-  },
-
-  _getHomeContribute: function() {
-    var styles = {
-      root: {
-        backgroundColor: Colors.grey200,
-        textAlign: 'center'
-      },
-      h3: {
-        margin: '0',
-        padding: '0',
-        fontWeight: Typography.fontWeightLight,
-        fontSize: '22'
-      },
-      button: {
-        marginTop: 32
-      }
-    };
-
-    return (
-      <FullWidthSection useContent={true} style={styles.root}>
-        <h3 style={styles.h3}>
-          Want to help make this <span style={styles.nowrap}>application awesome?</span> <span style={styles.nowrap}>Check out our repo.</span>
-        </h3>
-        <RaisedButton label="GitHub" primary={true} linkButton={true} href="" style={styles.button}/>
-      </FullWidthSection>
-    );
-  },
-
-  _onSignInClick: function() {
-    alert("sing-in button clicked");
-  },
-
-  _onSignUpClick: function() {
-    alert("sing-up button clicked");
-    /*this.context.router.transitionTo('components');*/
   }
 });
 
