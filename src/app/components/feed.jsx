@@ -31,22 +31,6 @@ var {Spacing, Typography} = mui.Styles;
 
 var Feed = React.createClass({
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object
-  },
-
-  getChildContext: function() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  },
-
-  componentWillMount: function() {
-    ThemeManager.setPalette({
-      accent1Color: Colors.deepOrange500
-    });
-  },
-
   render: function() {
 
     var containerStyle = {
@@ -55,7 +39,7 @@ var Feed = React.createClass({
 
     return (
      <div style={containerStyle}>
-      <List subheader="Today">
+      <List>
         <ListItem
           leftAvatar={<Avatar src="./image/ok-128.jpg" />}
           rightIconButton={<IconButton><ToggleStarBorder color={Colors.grey400} /></IconButton>}

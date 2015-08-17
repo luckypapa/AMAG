@@ -4,15 +4,16 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Material UI Example</title>
-  <meta name="description" content="Google's material design UI components built with React.">
+  <title>Hide book</title>
+  <meta name="description" content="Hide book">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="main.css">
-</head>
 
-<body>
-  <!-- This script adds the Roboto font to our project. For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 -->
   <script>
+  function init() {
+    /* This script adds the Roboto font to our project. 
+    For more detail go to this site:  http://www.google.com/fonts#UsePlace:use/Collection:Roboto:400,300,500 */
+
     var WebFontConfig = {
       google: { families: [ 'Roboto:400,300,500:latin' ] }
     };
@@ -25,7 +26,72 @@
       var s = document.getElementsByTagName('script')[0];
       s.parentNode.insertBefore(wf, s);
     })();
+
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '1632008093752871',
+        cookie     : true,  // enable cookies to allow the server to access the session
+        xfbml      : true,  // parse social plugins on this page
+        version    : 'v2.4', // use version 2.2
+        status     : true,
+        oauth      : true
+      });
+      console.log("FB.init called");
+
+      FB.Event.subscribe('auth.login', function(response) {
+        console.log('logged in');
+      });
+
+      FB.Event.subscribe('auth.logout', function(response) {
+        console.log('logged out');
+      });   
+
+      FB.Event.subscribe('auth.stateChange', function(response) {
+        console.log('auth.stateChange : ' + response);
+      });    
+
+      FB.getLoginStatus(function(response) {
+        console.log("FB.getLoginStatus called");
+        if (response.status === 'connected') {
+          // the user is logged in and has authenticated your
+          // app, and response.authResponse supplies
+          // the user's ID, a valid access token, a signed
+          // request, and the time the access token 
+          // and signed request each expire
+          console.log('response.status is connected');
+          var uid = response.authResponse.userID;
+          var accessToken = response.authResponse.accessToken;
+          console.log('uid is : ' + uid);
+          console.log('accessToken is : ' + accessToken);
+
+          var event = new CustomEvent("fbLogin", {
+            detail: {
+              res: response
+            }
+          });
+          
+          document.dispatchEvent(event);
+        } else if (response.status === 'not_authorized') {
+          console.log("the user is logged in to Facebook, but has not authenticated your app");
+        } else {
+          console.log("the user isn't logged in to Facebook.");
+        }
+      }, true);        
+    };  
+
+      // Load the SDK asynchronously
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  }
   </script>
+</head>
+
+<body onload="init()">
   <script src="app.js"></script>
 </body>
 
