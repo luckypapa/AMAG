@@ -55,6 +55,7 @@ class Master extends React.Component {
       this.context.router.isActive('get-started') ? 'Get Started' :
       this.context.router.isActive('feed') ? 'Feed' :
       this.context.router.isActive('component') ? 'Component' :
+      this.context.router.isActive('text-component') ? 'Text Component' :
       "";
 
     var rightButton = (
