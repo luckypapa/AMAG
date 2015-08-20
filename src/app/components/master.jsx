@@ -53,7 +53,9 @@ class Master extends React.Component {
     var styles = this.getStyles();
     var title =
       this.context.router.isActive('get-started') ? 'Get Started' :
-      this.context.router.isActive('feed') ? 'Feed' : "Open the book";
+      this.context.router.isActive('feed') ? 'Feed' :
+      this.context.router.isActive('component') ? 'Component' :
+      "";
 
     var rightButton = (
       <IconButton
@@ -84,9 +86,8 @@ class Master extends React.Component {
 
         <FullWidthSection style={styles.footer}>
           <p style={styles.p}>
-            Hide book was made by <a style={styles.a} href="">contributors</a>.
+            Hide book was made by <a style={styles.a} href="https://github.com/luckypapa/AMAG/graphs/contributors">Big head brothers band</a>.
           </p>
-          {githubButton}
         </FullWidthSection>
 
       </AppCanvas>

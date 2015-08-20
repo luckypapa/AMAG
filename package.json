@@ -1,6 +1,6 @@
 {
   "name": "material-ui-example",
-  "version": "0.8.0",
+  "version": "0.10.4",
   "description": "Sample project that uses material-ui",
   "repository": {
     "type": "git",
@@ -33,7 +33,7 @@
     "watchify": "^2.2.1"
   },
   "dependencies": {
-    "material-ui": ">=0.8",
+    "material-ui": ">=0.10.4",
     "react": ">=0.13",
     "react-tap-event-plugin": "^0.1.3",
     "react-router": "^0.13.3"

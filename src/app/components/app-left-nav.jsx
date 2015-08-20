@@ -4,13 +4,16 @@ var mui = require('material-ui');
 var {MenuItem, LeftNav} = mui;
 var {Colors, Spacing, Typography} = mui.Styles;
 
+var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
+
 var menuItems = [
     { route: 'get-started', text: 'Get Started' },
     { route: 'feed', text: 'Feed' },
-    { type: MenuItem.Types.SUBHEADER, text: 'Resources' },
-    { type: MenuItem.Types.LINK, payload: 'https://github.com/callemall/material-ui', text: 'GitHub' },
-    { type: MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' },
-    { type: MenuItem.Types.LINK, payload: 'https://www.google.com/design/spec/material-design/introduction.html', text: 'Material Design' }
+    { route: 'component', text: 'Component' },
+    { type: MenuItem.Types.SUBHEADER, text: 'Links' },
+    { type: MenuItem.Types.LINK, payload: 'https://github.com/luckypapa/AMAG', text: 'Github' },
+    { type: MenuItem.Types.LINK, payload: 'http://material-ui.com', text: 'Material-UI' },
+    { type: MenuItem.Types.LINK, payload: 'http://facebook.github.io/react', text: 'React' }
   ];
 
 class AppLeftNav extends React.Component {
@@ -31,7 +34,7 @@ class AppLeftNav extends React.Component {
       color: Typography.textFullWhite,
       lineHeight: Spacing.desktopKeylineIncrement + 'px',
       fontWeight: Typography.fontWeightLight,
-      backgroundColor: Colors.deepOrange500,
+      backgroundColor: ThemeManager.palette.primary1Color,
       paddingLeft: Spacing.desktopGutter,
       paddingTop: '0px',
       marginBottom: '8px'
@@ -78,7 +81,6 @@ class AppLeftNav extends React.Component {
     this.context.router.transitionTo('root');
     this.refs.leftNav.close();
   }
-
 }
 
 AppLeftNav.contextTypes = {
