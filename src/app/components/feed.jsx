@@ -106,7 +106,7 @@ var Feed = React.createClass({
           Raquel Parrado
         </ListItem>
       </List>
-      </div>   
+      </div>
     );
   },
 });

@@ -49,6 +49,27 @@ class Master extends React.Component {
     };
   }
 
+  componentDidMount() {
+    document.addEventListener("fbLogin",
+      function statusChangeCallback(e) {
+        if (this.context.router.getCurrentPath() != "/home") {
+          console.log('master fbLogin statusChangeCallback');
+          console.log(e.detail.res);
+          var response = e.detail.res;
+          if (response.status == 'connected') {
+            document.fblogin = "connected";
+          } else if (response.status === 'not_authorized') {
+            document.fblogin = "not_authorized";
+            this.context.router.transitionTo('home');
+          } else {
+            document.fblogin = "not_logged";
+            this.context.router.transitionTo('home');
+          }
+        }
+      }.bind(this)
+    );
+  }
+
   render() {
     var styles = this.getStyles();
     var title =
