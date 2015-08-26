@@ -34,7 +34,7 @@ module.exports = React.createClass({
 
     var drawElement =
         !this.state.connected ?
-        <CircularProgress mode="indeterminate" size={1.5} color="white"/>
+        <CircularProgress mode="indeterminate" size={0.8} color="white"/>
         : this.state.connected == "connected" ?
           <div>
           <RaisedButton
