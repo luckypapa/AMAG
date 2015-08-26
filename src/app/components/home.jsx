@@ -96,10 +96,10 @@ var HomePage = React.createClass({
     return (
       <FullWidthSection style={styles.root}>
           <div style={styles.tagline}>
-            <h1 style={styles.h1}>Hide Book</h1>     
+            <h1 style={styles.h1}>Hide Book</h1>
             <h2 style={styles.h2}>
               Talk with someone you may know <br/>
-              <span style={styles.nowrap}>anonymously and freely</span> 
+              anonymously and freely
             </h2>
             <FacebookLogin
               appId="1088597931155576"

@@ -96,7 +96,7 @@ var HomeFeature = React.createClass({
     return (
       <Paper 
         zDepth={this.state.zDepth}
-        onMouseOver={this._onMouseOver} 
+        onMouseOver={this._onMouseOver}
         onMouseOut={this._onMouseOut}
         style={this.mergeAndPrefix(
           styles.root,

@@ -30,7 +30,7 @@
     window.fbAsyncInit = function() {
       FB.init({
         appId      : '1632008093752871',
-        cookie     : true,  // enable cookies to allow the server to access the session
+        cookie     : false,  // enable cookies to allow the server to access the session
         xfbml      : true,  // parse social plugins on this page
         version    : 'v2.4', // use version 2.2
         status     : true,
@@ -44,40 +44,23 @@
 
       FB.Event.subscribe('auth.logout', function(response) {
         console.log('logged out');
-      });   
+        window.location.reload();
+      });
 
       FB.Event.subscribe('auth.stateChange', function(response) {
         console.log('auth.stateChange : ' + response);
-      });    
+      });
 
       FB.getLoginStatus(function(response) {
         console.log("FB.getLoginStatus called");
-        if (response.status === 'connected') {
-          // the user is logged in and has authenticated your
-          // app, and response.authResponse supplies
-          // the user's ID, a valid access token, a signed
-          // request, and the time the access token 
-          // and signed request each expire
-          console.log('response.status is connected');
-          var uid = response.authResponse.userID;
-          var accessToken = response.authResponse.accessToken;
-          console.log('uid is : ' + uid);
-          console.log('accessToken is : ' + accessToken);
-
-          var event = new CustomEvent("fbLogin", {
-            detail: {
+        var event = new CustomEvent("fbLogin", {
+          detail: {
               res: response
-            }
-          });
-          
-          document.dispatchEvent(event);
-        } else if (response.status === 'not_authorized') {
-          console.log("the user is logged in to Facebook, but has not authenticated your app");
-        } else {
-          console.log("the user isn't logged in to Facebook.");
-        }
-      }, true);        
-    };  
+          }
+        });
+        document.dispatchEvent(event);
+      }, true);
+    };
 
       // Load the SDK asynchronously
     (function(d, s, id) {
@@ -87,6 +70,7 @@
         js.src = "//connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
+
   }
   </script>
 </head>
