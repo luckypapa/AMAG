@@ -25,11 +25,11 @@ var FullWidthSection = React.createClass({
   getStyles: function() {
     return  {
       root: {
-        padding: DesktopGutter / 2 + 'px',
+        padding: DesktopGutter + 'px',
         boxSizing: 'border-box'
       },
       content: {
-        maxWidth: '650x',
+        maxWidth: '650px',
         margin: '0 auto'
       },
       rootWhenSmall: {

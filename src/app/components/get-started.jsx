@@ -40,7 +40,7 @@ class GetStarted extends React.Component {
 
     return (
       <div style={styles.root}>
-        <FullWidthSection style={styles.FullWidthSection}>
+        <FullWidthSection useContent={true}>
           <h2 style={styles.headline}>Lets getting start hide book</h2>
           <p>
              Talk with your facebook friends anonymously and freely    

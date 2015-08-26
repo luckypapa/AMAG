@@ -1,6 +1,7 @@
 var React = require('react');
 var {ClearFix, Mixins, SelectField, TextField, Styles} = require('material-ui');
 var {Spacing, Typography, color} = Styles;
+var FullWidthSection = require('./full-width-section.jsx');
 
 var TextComponent = React.createClass({
 
@@ -39,7 +40,13 @@ var TextComponent = React.createClass({
         marginBottom: 32
       },
       textfield: {
-        marginTop: 24
+        width : "100%",
+        height : "100px"
+      },
+      selectfield: {
+        marginTop: 24,
+        marginBottom: 36,
+        width : "100%"
       }
     };
   },
@@ -54,19 +61,20 @@ var TextComponent = React.createClass({
     ];
     return (
       <div style={styles.root}>
+      <FullWidthSection useContent={true}>
         <ClearFix>
-          <h2 style={styles.headline}>Share your secret story</h2>
           <TextField
             style={styles.textfield}
-            hintText="Write secret story"
+            floatingLabelText="Write your secret story"
             multiLine={true} /><br/>
           <SelectField
-            style={styles.textfield}
+            style={styles.selectfield}
             value={this.state.selectValue}
             onChange={this._handleSelectValueChange.bind(null, 'selectValue')}
             hintText="Secret type"
             menuItems={menuItems} /><br/>
         </ClearFix>
+      </FullWidthSection>
       </div>
     );
   },
