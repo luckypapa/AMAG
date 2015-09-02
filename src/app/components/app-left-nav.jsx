@@ -9,8 +9,8 @@ var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
 var menuItems = [
     { route: 'get-started', text: 'Get Started' },
     { route: 'feed', text: 'Feed' },
-    { route: 'component', text: 'Component' },
     { route: 'text-component', text: 'Text Component' },
+    { route: 'component', text: 'Component' },
     { type: MenuItem.Types.SUBHEADER, text: 'Links' },
     { type: MenuItem.Types.LINK, payload: 'https://github.com/luckypapa/AMAG', text: 'Github' },
     { type: MenuItem.Types.LINK, payload: 'http://material-ui.com', text: 'Material-UI' },

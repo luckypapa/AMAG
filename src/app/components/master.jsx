@@ -5,11 +5,24 @@ var AppLeftNav = require('./app-left-nav.jsx');
 var FullWidthSection = require('./full-width-section.jsx');
 var mui = require('material-ui');
 
-var Colors = mui.Styles.Colors;
-var Typography = mui.Styles.Typography;
-var ThemeManager = new mui.Styles.ThemeManager();
+var { AppBar,
+      AppCanvas,
+      FontIcon,
+      IconButton,
+      EnhancedButton,
+      Menu,
+      Mixins,
+      RaisedButton,
+      Styles,
+      Tab,
+      Tabs,
+      Paper} = require('material-ui');
 
-var { AppBar, AppCanvas, Menu, IconButton } = mui;
+var RouteHandler = Router.RouteHandler;
+var { Colors, Spacing, Typography } = Styles;
+var ThemeManager = new Styles.ThemeManager();
+
+var DesktopGutter = mui.Styles.Spacing.desktopGutter;
 
 class Master extends React.Component {
 
@@ -32,7 +45,8 @@ class Master extends React.Component {
       },
       footer: {
         backgroundColor: Colors.grey900,
-        textAlign: 'center'
+        textAlign: 'center',
+        padding: DesktopGutter + 'px'
       },
       a: {
         color: darkWhite
@@ -70,15 +84,143 @@ class Master extends React.Component {
     );
   }
 
-  render() {
-    var styles = this.getStyles();
-    var title =
+  componentWillMount(){
+    ThemeManager.setComponentThemes({
+      inkBar: {
+        backgroundColor: Colors.yellow200,
+      },
+    });
+
+    this.setState({tabIndex: this._getSelectedIndex()});
+    let setTabsState = function() {
+      this.setState({renderTabs: !(document.body.clientWidth <= 647)});
+    }.bind(this);
+    setTabsState();
+    window.onresize = setTabsState;
+  }
+
+  componentWillReceiveProps() {
+    this.setState({tabIndex: this._getSelectedIndex()});
+  }
+
+  _getTabs() {
+    let styles = {
+      root: {
+        backgroundColor: Colors.cyan500,
+        position: 'fixed',
+        height: 64,
+        top: 0,
+        right: 0,
+        zIndex: 4,
+        width: '100%',
+      },
+      container: {
+        position: 'absolute',
+        right: 0,
+        bottom: 0,
+      },
+      span: {
+        color: Colors.white,
+        fontWeight: Typography.fontWeightLight,
+        left: 22,
+        top: 22,
+        position: 'absolute',
+        fontSize: 26,
+      },
+      svgLogoContainer: {
+        position: 'fixed',
+        width: 300,
+        left: Spacing.desktopGutter,
+      },
+      svgLogo: {
+        width: 65,
+        backgroundColor: Colors.cyan500,
+        position: 'absolute',
+        top: 20,
+      },
+      tabs: {
+        width: 325,
+        bottom:0,
+      },
+      tab: {
+        height: 64
+      }
+    };
+
+    let materialIcon= this.state.tabIndex !== '0' ? (
+      <EnhancedButton
+        linkButton={true}
+        href="/#/home">
+        <span style={styles.span}>Hide Book</span>
+      </EnhancedButton>) : null;
+
+    return(
+      <div>
+        <Paper
+          zDepth={0}
+          rounded={false}
+          style={styles.root}>
+          {materialIcon}
+          <div style={styles.container}>
+            <Tabs
+              style={styles.tabs}
+              value={this.state.tabIndex}
+              onChange={this._handleTabChange.bind(this)}>
+              <Tab
+                value="1"
+                label="GETTING STARTED"
+                style={styles.tab}
+                route="get-started" />
+              <Tab
+                value="2"
+                label="FEED"
+                style={styles.tab}
+                route="feed"/>
+            </Tabs>
+          </div>
+        </Paper>
+      </div>
+    );
+  }
+
+  _getAppBar() {
+    let title =
       this.context.router.isActive('get-started') ? 'Get Started' :
       this.context.router.isActive('feed') ? 'Feed' :
       this.context.router.isActive('component') ? 'Component' :
       this.context.router.isActive('text-component') ? 'Text Component' :
       "";
 
+    let githubButton = (
+      <IconButton
+        iconClassName="muidocs-icon-custom-github"
+        href="https://github.com/callemall/material-ui"
+        linkButton={true}/>
+    );
+
+    return (
+      <div>
+        <AppBar
+          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap.bind(this)}
+          title={title}
+          zDepth={0}
+          iconElementRight={githubButton}
+          style={{position: 'absolute', top: 0}}/>
+      </div>);
+  }
+
+  _getSelectedIndex() {
+    return this.context.router.isActive('get-started') ? '1' :
+      this.context.router.isActive('feed') ? '2' : '0';
+  }
+
+  _handleTabChange(value, e, tab) {
+    this.context.router.transitionTo(tab.props.route);
+    this.setState({tabIndex: this._getSelectedIndex()});
+  }
+
+  render() {
+    var styles = this.getStyles();
     var rightButton = (
       <IconButton
         iconStyle={styles.iconButton}
@@ -96,21 +238,17 @@ class Master extends React.Component {
     return (
       <AppCanvas style={styles.root}>
 
-        <AppBar
-          onLeftIconButtonTouchTap={this._onLeftIconButtonTouchTap}
-          title={title}
-          zDepth={0}
-          iconElementRight={rightButton}/>
+        {this.state.renderTabs ? this._getTabs(): this._getAppBar()}
 
         <AppLeftNav ref="leftNav" />
 
         <RouteHandler />
 
-        <FullWidthSection style={styles.footer}>
+        <div style={styles.footer}>
           <p style={styles.p}>
             Hide book was made by <a style={styles.a} href="https://github.com/luckypapa/AMAG/graphs/contributors">Big head brothers band</a>.
           </p>
-        </FullWidthSection>
+        </div>
 
       </AppCanvas>
     );

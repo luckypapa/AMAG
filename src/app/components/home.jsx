@@ -58,6 +58,7 @@ var HomePage = React.createClass({
       h1: {
         color: Colors.darkWhite,
         fontWeight: Typography.fontWeightLight,
+        fontSize: 30
       },
       h2: {
         //.mui-font-style-title
