@@ -92,7 +92,7 @@ class Master extends React.Component {
     });
 
     this.setState({tabIndex: this._getSelectedIndex()});
-    let setTabsState = function() {
+    var setTabsState = function() {
       this.setState({renderTabs: !(document.body.clientWidth <= 647)});
     }.bind(this);
     setTabsState();
@@ -104,7 +104,7 @@ class Master extends React.Component {
   }
 
   _getTabs() {
-    let styles = {
+    var styles = {
       root: {
         backgroundColor: Colors.cyan500,
         position: 'fixed',
@@ -147,7 +147,7 @@ class Master extends React.Component {
       }
     };
 
-    let materialIcon= this.state.tabIndex !== '0' ? (
+    var materialIcon= this.state.tabIndex !== '0' ? (
       <EnhancedButton
         linkButton={true}
         href="/#/home">
@@ -184,14 +184,14 @@ class Master extends React.Component {
   }
 
   _getAppBar() {
-    let title =
+    var title =
       this.context.router.isActive('get-started') ? 'Get Started' :
       this.context.router.isActive('feed') ? 'Feed' :
       this.context.router.isActive('component') ? 'Component' :
       this.context.router.isActive('text-component') ? 'Text Component' :
       "";
 
-    let githubButton = (
+    var githubButton = (
       <IconButton
         iconClassName="muidocs-icon-custom-github"
         href="https://github.com/callemall/material-ui"
