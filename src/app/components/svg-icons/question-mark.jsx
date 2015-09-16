@@ -2,7 +2,7 @@ var React = require('react');
 var mui = require('material-ui');
 var SvgIcon = mui.SvgIcon;
 
-var ToggleStarBorder = React.createClass({
+var QuestionMark = React.createClass({
 
   render: function() {
     return (
@@ -14,4 +14,4 @@ var ToggleStarBorder = React.createClass({
 
 });
 
-module.exports = ToggleStarBorder;
+module.exports = QuestionMark;
