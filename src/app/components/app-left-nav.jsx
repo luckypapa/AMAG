@@ -1,12 +1,28 @@
 var React = require('react');
 var Router = require('react-router');
 var mui = require('material-ui');
-var {MenuItem, LeftNav} = mui;
+var {MenuItem, LeftNav, List, ListItem, Avatar, IconButton} = mui;
 var {Colors, Spacing, Typography} = mui.Styles;
+
+var ActionAssignment = require('./svg-icons/action-assignment.jsx');
+var ActionGrade = require('./svg-icons/action-grade.jsx');
+var ActionInfo = require('./svg-icons/action-info.jsx');
+var CommunicationCall = require('./svg-icons/communication-call.jsx');
+var CommunicationChatBubble = require('./svg-icons/communication-chat-bubble.jsx');
+var CommunicationEmail = require('./svg-icons/communication-email.jsx');
+var ContentDrafts = require('./svg-icons/content-drafts.jsx');
+var ContentInbox = require('./svg-icons/content-inbox.jsx');
+var ContentSend = require('./svg-icons/content-send.jsx');
+var EditorInsertChart = require('./svg-icons/editor-insert-chart.jsx');
+var FileFolder = require('./svg-icons/file-folder.jsx');
+var ToggleStarBorder = require('./svg-icons/toggle-star-border.jsx');
+var NavigationMoreButton = require('./svg-icons/navigation-more-button.jsx');
+
 
 var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
 
 var menuItems = [
+    { route: 'home', text: 'Home' },
     { route: 'get-started', text: 'Get Started' },
     { route: 'feed', text: 'Feed' },
     { route: 'text-component', text: 'Text Component' },
@@ -29,23 +45,25 @@ class AppLeftNav extends React.Component {
 
   getStyles() {
     return {
-      cursor: 'pointer',
-      //.mui-font-style-headline
-      fontSize: '24px',
-      color: Typography.textFullWhite,
-      lineHeight: Spacing.desktopKeylineIncrement + 'px',
-      fontWeight: Typography.fontWeightLight,
-      backgroundColor: ThemeManager.palette.primary1Color,
-      paddingLeft: Spacing.desktopGutter,
-      paddingTop: '0px',
-      marginBottom: '8px'
-    };
+      ListHead: {
+        backgroundColor: Colors.grey300
+      }
+    }
   }
 
   render() {
     var header = (
-      <div style={this.getStyles()} onTouchTap={this._onHeaderClick}>
-        Hide Book
+      <div onTouchTap={this._onHeaderClick}>
+        <List style={this.getStyles().ListHead}>
+          <ListItem
+            leftAvatar={<Avatar>A</Avatar>}
+            primaryText="Big head brothers"
+            secondaryText="show me the money"
+            rightIconButton={<IconButton><NavigationMoreButton color={Colors.grey600} /></IconButton>}
+          >
+          </ListItem>
+        </List>
+
       </div>
     );
 
@@ -79,7 +97,6 @@ class AppLeftNav extends React.Component {
   }
 
   _onHeaderClick() {
-    this.context.router.transitionTo('root');
     this.refs.leftNav.close();
   }
 }

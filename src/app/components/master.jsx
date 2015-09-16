@@ -106,7 +106,7 @@ class Master extends React.Component {
   _getTabs() {
     var styles = {
       root: {
-        backgroundColor: Colors.cyan500,
+        backgroundColor: Colors.deepPurple500,
         position: 'fixed',
         height: 64,
         top: 0,
@@ -134,15 +134,17 @@ class Master extends React.Component {
       },
       svgLogo: {
         width: 65,
-        backgroundColor: Colors.cyan500,
+        backgroundColor: Colors.deepPurple500,
         position: 'absolute',
         top: 20,
       },
       tabs: {
+        backgroundColor: Colors.deepPurple500,
         width: 325,
         bottom:0,
       },
       tab: {
+        backgroundColor: Colors.deepPurple500,
         height: 64
       }
     };
@@ -205,7 +207,7 @@ class Master extends React.Component {
           title={title}
           zDepth={0}
           iconElementRight={githubButton}
-          style={{position: 'absolute', top: 0}}/>
+          style={{position: 'absolute',top: 0, backgroundColor: Colors.deepPurple500}}/>
       </div>);
   }
 

@@ -6,6 +6,7 @@ var RaisedButton = mui.RaisedButton;
 var CircularProgress = mui.CircularProgress;
 var Dialog = mui.Dialog;
 var ThemeManager = new mui.Styles.ThemeManager().getCurrentTheme();
+var {Colors, Spacing, Typography} = mui.Styles;
 
 module.exports = React.createClass({
 
@@ -20,7 +21,7 @@ module.exports = React.createClass({
   render: function() {
     var styles = {
       label: {
-        color: ThemeManager.palette.primary1Color,
+        color: Colors.indigo700,
       },
       demoStyle: {
         margin: '16px 32px 0px 32px'
